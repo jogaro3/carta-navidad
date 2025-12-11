@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti, en Navidad ❤️</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Fondo general: tu marco como background del body */
+    body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #7a0000;
+  background-image: url('marco-navidad.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  /* AQUÍ LO IMPORTANTE */
+  background-size: 500px 800px;
+}
+
+
+    /* Nieve por TODO el body */
+    .snow {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(3px 3px at 10% 20%, rgba(255,255,255,0.95) 50%, transparent 50%),
+        radial-gradient(3px 3px at 80% 10%, rgba(255,255,255,0.85) 50%, transparent 50%),
+        radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,0.75) 50%, transparent 50%),
+        radial-gradient(2px 2px at 70% 60%, rgba(255,255,255,0.85) 50%, transparent 50%);
+      background-size: 180px 180px;
+      animation: snowMove 9s linear infinite;
+      z-index: 30;
+    }
+
+    @keyframes snowMove {
+      0% { transform: translateY(-30px); }
+      100% { transform: translateY(50px); }
+    }
+
+    /* Fondo estilo madera para el libro */
+    .wood-bg {
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #8b5a2b 0px,
+          #8b5a2b 40px,
+          #7b4f26 40px,
+          #7b4f26 80px
+        );
+    }
+
+    /* Borde dorado neón pulse */
+    .neon-gold {
+      box-shadow:
+        0 0 12px rgba(255, 215, 0, 0.7),
+        0 0 24px rgba(255, 215, 0, 0.5),
+        0 0 48px rgba(255, 180, 0, 0.35);
+      animation: neonPulse 2.2s ease-in-out infinite;
+      border-color: rgb(255, 215, 0);
+    }
+
+    @keyframes neonPulse {
+      0% {
+        box-shadow:
+          0 0 10px rgba(255, 215, 0, 0.7),
+          0 0 22px rgba(255, 200, 0, 0.45),
+          0 0 42px rgba(255, 170, 0, 0.3);
+        border-color: rgb(255, 215, 0);
+      }
+      50% {
+        box-shadow:
+          0 0 20px rgba(255, 230, 0, 1),
+          0 0 40px rgba(255, 210, 0, 0.85),
+          0 0 70px rgba(255, 190, 0, 0.6);
+        border-color: rgb(255, 240, 150);
+      }
+      100% {
+        box-shadow:
+          0 0 10px rgba(255, 215, 0, 0.7),
+          0 0 22px rgba(255, 200, 0, 0.45),
+          0 0 42px rgba(255, 170, 0, 0.3);
+        border-color: rgb(255, 215, 0);
+      }
+    }
+
+    /* Animación de páginas */
+    .page {
+      opacity: 0;
+      transform: translateX(20px) scale(0.97);
+      pointer-events: none;
+    }
+    .page.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+  /* Cartas de regalo que giran */
+.gift-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.gift-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.gift-card.flipped .gift-inner {
+  transform: rotateY(180deg);
+}
+
+.gift-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+/* Cara trasera (imagen) */
+.gift-back {
+  transform: rotateY(180deg);
+}
+
+/* Shake cuando está bloqueado */
+.gift-card.shake .gift-inner {
+  animation: giftShake 0.4s;
+}
+
+@keyframes giftShake {
+  0%   { transform: translateX(0) rotateY(0); }
+  25%  { transform: translateX(-4px) rotateY(0); }
+  50%  { transform: translateX(4px) rotateY(0); }
+  75%  { transform: translateX(-3px) rotateY(0); }
+  100% { transform: translateX(0) rotateY(0); }
+}
+
+/* Texto debajo del icono cuando está desbloqueado */
+.gift-label {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+  </style>
+</head>
+
+<body class="relative min-h-screen flex p-4">
+
+  <!-- LIBRO centrado encima del fondo -->
+  <main class="relative z-10 w-full flex justify-center mt-4">
+    <div
+      class="wood-bg neon-gold rounded-3xl border-4 shadow-2xl
+             w-[350px] max-w-[100%] h-[600px] max-h-[100%]
+             flex flex-col gap-3 px-5 pt-5 pb-4 bg-amber-50/5">
+
+      <!-- Cabecera -->
+      <header class="text-center space-y-1">
+        <h2 class="text-5xl font-semibold text-amber-100 mb-3 drop-shadow">
+
+          Especial para ti
+        </p>
+        <h1 class="text-2xl font-semibold text-amber-50 drop-shadow">
+          Nuestro pequeño cuento de Navidad 🎄
+        </h1>
+        <p class="text-xl text-amber-100/90">
+          Desliza o toca las flechas para pasar página
+        </p>
+      </header>
+
+      <!-- Separador -->
+      <div class="h-0.5 w-20 bg-gradient-to-r from-amber-200 via-yellow-200 to-amber-300 mx-auto rounded-full opacity-90"></div>
+
+      <!-- PÁGINAS -->
+      <section id="pages" class="relative flex-1 overflow-hidden">
+        <article
+class="page absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-10 ...">
+          <h2 class="text-2xl text-amber-100 leading-relaxed drop-shadow"
+          >
+            Portada ✨
+          </h2>
+          <p class="text-xl text-amber-50/95 leading-relaxed drop-shadow">
+            Este pequeño libro navideño existe solo para ti.<br>
+            Gracias por hacer mi vida más bonita cada día. ❤️
+          </p>
+        </article>
+
+        <article
+class="page absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-10 ...">         
+ <h2 class="text-lg font-semibold text-amber-100 mb-3 drop-shadow">
+            <h2 class="text-xl text-amber-100 leading-relaxed drop-shadow">Capítulo 1 ·<br>Tú</h2> 
+          </h2>
+          <p class="text-s text-amber-50/95 leading-relaxed drop-shadow">
+            Tu risa, tus abrazos, tus mensajes, tu forma de mirar...<br>
+            No tienes idea de lo bien que me haces sin siquiera intentarlo. 💫
+          </p>
+        </article>
+
+        <article
+class="page absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-10 ...">          <h2 class="text-lg font-semibold text-amber-100 mb-3 drop-shadow">
+            <h2 class="text-xl text-amber-100 leading-relaxed drop-shadow">Capítulo 2 - Nosotros</h2> 
+          </h2>
+          <p class="text-s text-amber-50/95 leading-relaxed drop-shadow">
+            Quiero más noches de manta, más planes improvisados,<br>
+            más domingos tranquilos y más historias que solo tengan sentido contigo. 🎁
+          </p>
+        </article>
+
+      <article
+  class="page absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-10 transition-all duration-500 ease-out">
+
+  <h2 class="text-xl text-amber-100 leading-relaxed drop-shadow mb-4">
+    Final ❤️
+  </h2>
+
+  <p class="text-s text-amber-50/95 leading-relaxed drop-shadow mb-4">
+    En Navidad y siempre, mi deseo eres tú.
+    Gracias por ser mi persona favorita.Te quiero muchísimo. ✨
+    El resto del cuento quiero seguir escribiéndolo contigo. 💛
+  </p>
+  </article>
+  </p>
+<article
+class="page absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-10 ...">
+  <h2 class="text-s text-amber-100 leading-relaxed drop-shadow mb-4">
+    Regalos para ti 🎁
+  </h2>
+<p class="text-amber-100">Algunos se desbloquean para el 25 y otros para 6</p>
+  <!-- GRID DE REGALOS (2x2) -->
+  <div class="grid grid-cols-2 gap-4 w-full px-2 mt-2">
+
+    <!-- Regalo 1 (25 diciembre) -->
+    <div class="gift-card" data-unlock="25">
+      <div class="gift-inner w-15 h-10 bg-amber-50/5 rounded-xl border border-amber-200/40 overflow-hidden flex flex-col items-center justify-center">
+        <!-- Cara frontal -->
+        <div class="gift-face gift-front flex flex-col items-center justify-center">
+          <span class="text-3xl text-amber-100 drop-shadow">🎁</span>
+          <span class="gift-label text-s text-amber-100 hidden">Una manta</span>
+        </div>
+        <!-- Cara trasera -->
+        <div class="gift-face gift-back bg-black/40 flex items-center justify-center">
+          <img src="regalo1.jpg" alt="Regalo 1" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+    <!-- Regalo 2 (25 diciembre) -->
+    <div class="gift-card" data-unlock="25">
+      <div class="gift-inner w-15 h-10 bg-amber-50/5 rounded-xl border border-amber-200/40 overflow-hidden flex flex-col items-center justify-center">
+        <div class="gift-face gift-front flex flex-col items-center justify-center">
+          <span class="text-3xl text-amber-100 drop-shadow">🎁</span>
+          <span class="gift-label text-amber-100 hidden">Bote de chucherias con sorpresa</span>
+        </div>
+        <div class="gift-face gift-back bg-black/40 flex items-center justify-center">
+          <img src="regalo2.jpg" alt="Regalo 2" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+    <!-- Regalo 3 (6 enero) -->
+    <div class="gift-card" data-unlock="6">
+      <div class="gift-inner w-15 h-10 bg-amber-50/5 rounded-xl border border-amber-200/40 overflow-hidden flex flex-col items-center justify-center">
+        <div class="gift-face gift-front flex flex-col items-center justify-center">
+          <span class="text-3xl text-amber-100 drop-shadow">🎁</span>
+          <span class="gift-label text-amber-100 hidden">Un perfume</span>
+        </div>
+        <div class="gift-face gift-back bg-black/40 flex items-center justify-center">
+          <img src="regalo3.jpg" alt="Regalo 3" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+    <!-- Regalo 4 (6 enero) -->
+    <div class="gift-card" data-unlock="6">
+      <div class="gift-inner w-15 h-10 bg-amber-50/5 rounded-xl border border-amber-200/40 overflow-hidden flex flex-col items-center justify-center">
+        <div class="gift-face gift-front flex flex-col items-center justify-center">
+          <span class="text-3xl text-amber-100 drop-shadow">🎁</span>
+          <span class="gift-label text-amber-100 hidden">Ropita</span>
+        </div>
+        <div class="gift-face gift-back bg-black/40 flex items-center justify-center">
+          <img src="regalo4.jpg" alt="Regalo 4" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+
+      </section>
+
+      <!-- CONTROLES -->
+      <footer class="flex items-center justify-between gap-3 pt-1">
+        <button id="prevBtn"
+          class="disabled:opacity-30 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-s font-medium text-amber-900 bg-amber-200/95 shadow-md hover:bg-amber-100 transition">
+          ⟵ Atrás
+        </button>
+
+        <div id="indicator" class="flex items-center justify-center gap-1.5 flex-1"></div>
+
+        <button id="nextBtn"
+          class="disabled:opacity-30 inline-flex items-center justify-center px-3 py-1.5 rounded-full text-s font-medium text-amber-900 bg-amber-200/95 shadow-md hover:bg-amber-100 transition">
+          Siguiente ⟶
+        </button>
+      </footer>
+    </div>
+  </main>
+
+  <!-- NIEVE POR ENCIMA DE TODO -->
+  <div class="snow"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
